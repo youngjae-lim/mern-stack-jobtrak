@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Logo, FormRow } from '../components'
+import { Logo, FormRow, Alert } from '../components'
 import Wrapper from '../assets/wrappers/RegisterPage'
 
 const initialState = {
@@ -7,6 +7,7 @@ const initialState = {
   email: '',
   password: '',
   isMember: true,
+  showAlert: false,
 }
 
 const Register = () => {
@@ -26,7 +27,8 @@ const Register = () => {
       <form className='form' onSubmit={onSubmit}>
         {/* TODO: change log to Jobtrak */}
         <Logo />
-        <h3>Login</h3>
+        <h3>{values.isMember ? 'Login' : 'Register'}</h3>
+        {values.showAlert && <Alert />}
 
         {/* name field */}
         <FormRow
