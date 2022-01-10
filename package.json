@@ -1,8 +1,9 @@
 {
   "name": "mern-stack-jobtrak",
   "version": "1.0.0",
-  "description": "",
+  "description": "Track your job search",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
