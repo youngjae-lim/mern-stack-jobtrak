@@ -12,6 +12,8 @@ const initialState = {
 
 const Register = () => {
   const [values, setValues] = useState(initialState)
+
+  // global state
   const { isLoading, showAlert } = useAppContext()
 
   const toggleMember = () => {
