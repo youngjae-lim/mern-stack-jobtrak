@@ -1,9 +1,15 @@
 import express from 'express'
+
+// middlewares
 import notFoundMiddleware from './middleware/not-found.js'
 import errorHandlerMiddleware from './middleware/error-handler.js'
+
 import dotenv from 'dotenv'
 import connectDB from './db/connect.js'
+
+// routers
 import authRouter from './routes/authRoutes.js'
+import jobsRouter from './routes/jobsRoutes.js'
 
 dotenv.config()
 const app = express()
@@ -15,6 +21,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/jobs', jobsRouter)
 
 // middleware
 app.use(notFoundMiddleware)
