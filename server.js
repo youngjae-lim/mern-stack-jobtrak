@@ -4,6 +4,8 @@ import express from 'express'
 import notFoundMiddleware from './middleware/not-found.js'
 import errorHandlerMiddleware from './middleware/error-handler.js'
 
+import 'express-async-errors'
+
 import dotenv from 'dotenv'
 import connectDB from './db/connect.js'
 
