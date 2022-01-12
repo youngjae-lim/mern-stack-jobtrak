@@ -4,10 +4,11 @@ const errorHandlerMiddleware = (err, req, res, next) => {
   // TODO: Delete these later
   console.log('err: ', err)
   console.log(err.code)
+  console.log(err.message)
 
   const defaultError = {
     statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-    msg: 'Something went wrong, try again later',
+    msg: err.message || 'Something went wrong, try again later',
   }
 
   if (err.name === 'ValidationError') {
