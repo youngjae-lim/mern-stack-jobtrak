@@ -16,9 +16,9 @@ const register = async (req, res) => {
 
   // create a user in the mongodb
   const user = await User.create({ name, email, password })
-  user.createJWT()
+  const token = user.createJWT()
 
-  res.status(StatusCodes.CREATED).json({ user })
+  res.status(StatusCodes.CREATED).json({ user, token })
 }
 
 const login = async (req, res) => {
