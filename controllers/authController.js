@@ -14,7 +14,9 @@ const register = async (req, res) => {
     throw new BadRequestError('email already in use')
   }
 
+  // create a user in the mongodb
   const user = await User.create({ name, email, password })
+  user.createJWT()
 
   res.status(StatusCodes.CREATED).json({ user })
 }
