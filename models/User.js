@@ -38,4 +38,9 @@ const UserSchema = new mongoose.Schema({
   },
 })
 
+// https://mongoosejs.com/docs/middleware.html
+UserSchema.pre('save', function () {
+  console.log(this.password)
+})
+
 export default mongoose.model('User', UserSchema)
