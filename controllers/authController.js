@@ -18,6 +18,7 @@ const register = async (req, res) => {
   const user = await User.create({ name, email, password })
   const token = user.createJWT()
 
+  // send a response to client in json format
   res.status(StatusCodes.CREATED).json({
     user: {
       // hard-coded user object to exclude a hashed password manually
