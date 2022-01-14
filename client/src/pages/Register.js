@@ -18,7 +18,7 @@ const Register = () => {
   const [values, setValues] = useState(initialState)
 
   // global state
-  const { user, isLoading, showAlert, displayAlert, registerUser } =
+  const { user, isLoading, showAlert, displayAlert, registerUser, loginUser } =
     useAppContext()
 
   const toggleMember = () => {
@@ -42,7 +42,7 @@ const Register = () => {
     const currentUser = { name, email, password }
 
     if (isMember) {
-      console.log('already a member')
+      loginUser(currentUser)
     } else {
       registerUser(currentUser)
     }
@@ -52,7 +52,7 @@ const Register = () => {
     if (user) {
       setTimeout(() => {
         navigate('/') // navigate to Dashboard page
-      }, 3000)
+      }, 1000)
     }
   }, [user, navigate])
 
