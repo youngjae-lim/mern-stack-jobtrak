@@ -12,6 +12,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='/' element={<SharedLayout />}>
+          <Route index element={<Stats />} />
+          <Route path='all-jobs' element={<AllJobs />} />
+          <Route path='add-job' element={<AddJob />} />
+          <Route path='profile' element={<Profile />} />
+        </Route>
         <Route path='/' element={<div>Dashboard</div>} />
         <Route path='/register' element={<Register />} />
         <Route path='/landing' element={<Landing />} />
