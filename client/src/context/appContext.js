@@ -69,7 +69,6 @@ const AppProvider = ({ children }) => {
           location,
         },
       })
-      // TODO: add localStorage later here
       addUserToLocalStroage({ user, token, location })
     } catch (error) {
       // TODO: remove console.log

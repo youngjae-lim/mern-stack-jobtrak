@@ -5,7 +5,7 @@ import notFoundMiddleware from './middleware/not-found.js'
 import errorHandlerMiddleware from './middleware/error-handler.js'
 
 import 'express-async-errors'
-
+import morgan from 'morgan'
 import dotenv from 'dotenv'
 import connectDB from './db/connect.js'
 
@@ -16,6 +16,9 @@ import jobsRouter from './routes/jobsRoutes.js'
 dotenv.config()
 const app = express()
 
+if (process.env.NODE_ENV !== 'production') {
+  app.use(morgan('dev'))
+}
 app.use(express.json())
 
 app.get('/', (req, res) => {
