@@ -18,7 +18,7 @@ const Register = () => {
   const [values, setValues] = useState(initialState)
 
   // global state
-  const { user, isLoading, showAlert, displayAlert, registerUser, loginUser } =
+  const { user, isLoading, showAlert, displayAlert, setupUser } =
     useAppContext()
 
   const toggleMember = () => {
@@ -42,12 +42,21 @@ const Register = () => {
     const currentUser = { name, email, password }
 
     if (isMember) {
-      loginUser(currentUser)
+      setupUser({
+        currentUser,
+        endPoint: 'login',
+        alertText: 'Login Successfull! Redirecting...',
+      })
     } else {
-      registerUser(currentUser)
+      setupUser({
+        currentUser,
+        endPoint: 'register',
+        alertText: 'User Created! Redirecting...',
+      })
     }
   }
 
+  // once logged-in or registered successfully, navigate to the dashboard page
   useEffect(() => {
     if (user) {
       setTimeout(() => {
