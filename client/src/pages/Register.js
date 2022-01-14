@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Logo, FormRow, Alert } from '../components'
 import Wrapper from '../assets/wrappers/RegisterPage'
 import { useAppContext } from '../context/appContext'
@@ -11,10 +12,14 @@ const initialState = {
 }
 
 const Register = () => {
+  const navigate = useNavigate()
+
+  // local state
   const [values, setValues] = useState(initialState)
 
   // global state
-  const { isLoading, showAlert, displayAlert, registerUser } = useAppContext()
+  const { user, isLoading, showAlert, displayAlert, registerUser } =
+    useAppContext()
 
   const toggleMember = () => {
     // NOTE: changed ..values to ...initialState to fix a bug
@@ -42,6 +47,14 @@ const Register = () => {
       registerUser(currentUser)
     }
   }
+
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        navigate('/') // navigate to Dashboard page
+      }, 3000)
+    }
+  }, [user, navigate])
 
   return (
     <Wrapper className='full-page'>
