@@ -10,15 +10,20 @@ import {
 } from './actions'
 import axios from 'axios'
 
+// set as default from localStorage
+const user = localStorage.getItem('user')
+const token = localStorage.getItem('token')
+const userLocation = localStorage.getItem('location')
+
 const initialState = {
   isLoading: false,
   showAlert: false,
   alertText: '',
   alertType: '',
-  user: null,
-  token: null,
-  userLocation: '',
-  jobLocation: '',
+  user: user ? JSON.parse(user) : null,
+  token: token,
+  userLocation: userLocation || '',
+  jobLocation: userLocation || '',
 }
 
 const AppContext = React.createContext()
@@ -37,6 +42,18 @@ const AppProvider = ({ children }) => {
     }, 3000)
   }
 
+  const addUserToLocalStroage = ({ user, token, location }) => {
+    localStorage.setItem('user', JSON.stringify(user))
+    localStorage.setItem('token', token)
+    localStorage.setItem('location', location)
+  }
+
+  const removeUserFromLocalStorage = () => {
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
+    localStorage.removeItem('location')
+  }
+
   const registerUser = async (currentUser) => {
     dispatch({ type: REGISTER_USER_BEGIN })
     try {
@@ -53,6 +70,7 @@ const AppProvider = ({ children }) => {
         },
       })
       // TODO: add localStorage later here
+      addUserToLocalStroage({ user, token, location })
     } catch (error) {
       // TODO: remove console.log
       // console.log(error.response)
