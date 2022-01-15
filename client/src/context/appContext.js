@@ -6,6 +6,7 @@ import {
   SETUP_USER_BEGIN,
   SETUP_USER_SUCCESS,
   SETUP_USER_ERROR,
+  TOGGLE_SIDEBAR,
   // HANDLE_CHANGE,
 } from './actions'
 import axios from 'axios'
@@ -24,6 +25,7 @@ const initialState = {
   token: token,
   userLocation: userLocation || '',
   jobLocation: userLocation || '',
+  showSidebar: false,
 }
 
 const AppContext = React.createContext()
@@ -80,12 +82,18 @@ const AppProvider = ({ children }) => {
     }
     clearAlert()
   }
+
+  const toggleSidebar = () => {
+    dispatch({ type: TOGGLE_SIDEBAR })
+  }
   // const handleChange = ({ name, value }) => {
   //   dispatch({ type: HANDLE_CHANGE, payload: { name, value } })
   // }
 
   return (
-    <AppContext.Provider value={{ ...state, displayAlert, setupUser }}>
+    <AppContext.Provider
+      value={{ ...state, displayAlert, setupUser, toggleSidebar }}
+    >
       {children}
     </AppContext.Provider>
   )
