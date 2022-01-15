@@ -9,9 +9,9 @@ const Landing = () => {
         {/* TODO: change log to Jobtrak */}
         <Logo />
       </nav>
-      <div class='container page'>
+      <div className='container page'>
         {/* info */}
-        <div class='info'>
+        <div className='info'>
           <h1>
             job <span>tracking</span> app
           </h1>
