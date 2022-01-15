@@ -6,7 +6,7 @@ const SharedLayout = () => {
   return (
     <Wrapper>
       <main className='dashboard'>
-        <SmallSidebar /> {/* for sscreen size < 992px, logic in the css */}
+        <SmallSidebar /> {/* for screen size < 992px, logic in the css */}
         <BigSidebar /> {/* for screen size > 992px, logic in the css */}
         <div>
           <Navbar />
