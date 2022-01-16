@@ -92,13 +92,24 @@ const AppProvider = ({ children }) => {
     dispatch({ type: LOGOUT_USER })
     removeUserFromLocalStorage()
   }
+
+  const updateUser = async (currentUser) => {
+    console.log(currentUser)
+  }
   // const handleChange = ({ name, value }) => {
   //   dispatch({ type: HANDLE_CHANGE, payload: { name, value } })
   // }
 
   return (
     <AppContext.Provider
-      value={{ ...state, displayAlert, setupUser, toggleSidebar, logoutUser }}
+      value={{
+        ...state,
+        displayAlert,
+        setupUser,
+        toggleSidebar,
+        logoutUser,
+        updateUser,
+      }}
     >
       {children}
     </AppContext.Provider>
