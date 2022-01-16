@@ -3,6 +3,7 @@ import express from 'express'
 // middlewares
 import notFoundMiddleware from './middleware/not-found.js'
 import errorHandlerMiddleware from './middleware/error-handler.js'
+import authenticateUser from './middleware/auth.js'
 
 import 'express-async-errors'
 import morgan from 'morgan'
@@ -26,7 +27,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/v1/auth', authRouter)
-app.use('/api/v1/jobs', jobsRouter)
+app.use('/api/v1/jobs', authenticateUser, jobsRouter)
 
 // middleware
 app.use(notFoundMiddleware)
