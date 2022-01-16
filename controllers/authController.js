@@ -55,13 +55,36 @@ const login = async (req, res) => {
   // set password to undefined so that we don't expose the hashed password
   user.password = undefined
 
-  res.status(StatusCodes.OK).json({ user, token, location: user.location })
+  res.status(StatusCodes.OK).json({
+    user,
+    token,
+    location: user.location,
+  })
 }
 
 const updateUser = async (req, res) => {
-  // TODO: clean up console.log later
-  console.log(req.user)
-  return res.send('updateUser')
+  console.log(req.body)
+  const { email, name, lastName, location } = req.body
+  if (!email || !name || !lastName || !location) {
+    throw new BadRequestError('please provide all values')
+  }
+
+  const user = await User.findOne({ _id: req.user.userId })
+
+  user.email = email
+  user.name = name
+  user.lastName = lastName
+  user.location = location
+
+  await user.save()
+
+  const token = user.createJWT()
+
+  res.status(StatusCodes.OK).json({
+    user,
+    token,
+    location: user.location,
+  })
 }
 
 export { register, login, updateUser }
