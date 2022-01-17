@@ -14,11 +14,11 @@ const Profile = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     // TODO: Uncomment below after testing
-    // if (!name || !email || !lastName || !location) {
-    //   // test and remove temporary
-    //   displayAlert()
-    //   return
-    // }
+    if (!name || !email || !lastName || !location) {
+      // test and remove temporary
+      displayAlert()
+      return
+    }
 
     updateUser({ name, email, lastName, location })
   }

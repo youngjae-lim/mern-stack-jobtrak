@@ -59,9 +59,9 @@ const AppProvider = ({ children }) => {
       return response
     },
     (error) => {
-      console.log(error.response)
+      // authentication invalid
       if (error.response.status === 401) {
-        console.log('AUTH ERROR')
+        logoutUser()
       }
       return Promise.reject(error)
     }
@@ -140,10 +140,13 @@ const AppProvider = ({ children }) => {
 
       addUserToLocalStroage({ user, token, location })
     } catch (error) {
-      dispatch({
-        type: UPDATE_USER_ERROR,
-        payload: { msg: error.response.data.msg },
-      })
+      // NOTE: We don't need to show auth error because a user is logged out automatically
+      if (error.response.status !== 401) {
+        dispatch({
+          type: UPDATE_USER_ERROR,
+          payload: { msg: error.response.data.msg },
+        })
+      }
     }
     clearAlert()
   }
