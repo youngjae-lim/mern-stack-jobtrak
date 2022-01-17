@@ -94,7 +94,20 @@ const AppProvider = ({ children }) => {
   }
 
   const updateUser = async (currentUser) => {
-    console.log(currentUser)
+    try {
+      const { data } = await axios.patch(
+        '/api/v1/auth/updateUser',
+        currentUser,
+        {
+          headers: {
+            Authorization: `Bearer ${state.token}`,
+          },
+        }
+      )
+      console.log(data)
+    } catch (error) {
+      console.log(error.response)
+    }
   }
   // const handleChange = ({ name, value }) => {
   //   dispatch({ type: HANDLE_CHANGE, payload: { name, value } })

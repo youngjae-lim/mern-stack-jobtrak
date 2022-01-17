@@ -13,6 +13,7 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    // TODO: Uncomment below after testing
     // if (!name || !email || !lastName || !location) {
     //   // test and remove temporary
     //   displayAlert()
