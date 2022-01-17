@@ -1,4 +1,4 @@
-import { FormRow, Alert } from '../../components'
+import { FormRow, FormRowSelect, Alert } from '../../components'
 import { useAppContext } from '../../context/appContext'
 import Wrapper from '../../assets/wrappers/DashboardFormPage'
 
@@ -13,7 +13,7 @@ const AddJob = () => {
     jobType,
     jobTypeOptions,
     status,
-    stautsOptions,
+    statusOptions,
   } = useAppContext()
 
   const handleSubmit = (e) => {
@@ -40,18 +40,21 @@ const AddJob = () => {
         {showAlert && <Alert />}
 
         <div className='form-center'>
+          {/* position */}
           <FormRow
             type='text'
             name='position'
             value={position}
             handleChange={handleJobInput}
           />
+          {/* company */}
           <FormRow
             type='text'
             name='company'
             value={company}
             handleChange={handleJobInput}
           />
+          {/* job location */}
           <FormRow
             type='text'
             labelText='job location'
@@ -60,28 +63,22 @@ const AddJob = () => {
             handleChange={handleJobInput}
           />
           {/* job type */}
-          <div className='form-row'>
-            <label htmlFor='jobType' className='form-label'>
-              job type
-            </label>
-
-            <select
-              name='jobType'
-              value={jobType}
-              onChange={handleJobInput}
-              className='form-select'
-            >
-              {jobTypeOptions.map((itemValue, index) => {
-                return (
-                  <option key={index} value={itemValue}>
-                    {itemValue}
-                  </option>
-                )
-              })}
-            </select>
-          </div>
+          <FormRowSelect
+            labelText='job type'
+            name='jobType'
+            value={jobType}
+            handleChange={handleJobInput}
+            list={jobTypeOptions}
+          />
           {/* job status */}
+          <FormRowSelect
+            name='status'
+            value={status}
+            handleChange={handleJobInput}
+            list={statusOptions}
+          />
 
+          {/* btn container */}
           <div className='btn-container'>
             <button
               type='submit'
