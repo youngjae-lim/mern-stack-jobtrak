@@ -28,7 +28,28 @@ const getAllJobs = async (req, res) => {
 }
 
 const updateJob = async (req, res) => {
-  return res.send('updateJob')
+  const { id: jobId } = req.params
+
+  const { company, position } = req.body
+
+  if (!company || !position) {
+    throw new BadRequestError('please provide all values')
+  }
+
+  const job = await Job.findOne({ _id: jobId })
+
+  if (!job) {
+    throw new NotFoundError(`No job with id ${jobId}`)
+  }
+
+  // check permissions
+
+  const updatedJob = await Job.findOneAndUpdate({ _id: jobId }, req.body, {
+    new: true,
+    runValidators: true, // validator will run against things in req.body only
+  })
+
+  res.status(StatusCodes.OK).json({ updatedJob })
 }
 
 const showStats = async (req, res) => {
