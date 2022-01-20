@@ -247,12 +247,10 @@ const AppProvider = ({ children }) => {
         },
       })
     } catch (error) {
-      console.log(error.response)
-      // TODO: comment out for now just to debug
       // there is less likely that we get 404 (not found) error because we take care of that in the server side
       // when there is no jobs in the database. That is, we display "No jobs to display..." message in the page.
       // Having said that, there might be ain internal server error (500). In that case, we just log out a user right away.
-      // logoutUser()
+      logoutUser()
     }
     // there might be a case where an alert from another page is still in effect(3 seconds) when accessing AllJobs
     // So, we just want to clear whatever alert that persists right after sending the get request to the server
@@ -295,10 +293,8 @@ const AppProvider = ({ children }) => {
       await authFetch.delete(`/jobs/${jobId}`)
       getJobs()
     } catch (error) {
-      console.log(error.response)
       // Instead of displaying a possible internal server error as an alert, we simply log out a user.
-      // TODO: Uncomment the below later
-      // logoutUser()
+      logoutUser()
     }
   }
 
@@ -316,9 +312,7 @@ const AppProvider = ({ children }) => {
         },
       })
     } catch (error) {
-      console.log(error.response)
-      // TODO: Uncomment the below later
-      // logoutUser()
+      logoutUser()
     }
     clearAlert()
   }
