@@ -23,8 +23,8 @@ const PageButtonContainer = () => {
       <div className='btn-container'>buttons</div>
 
       <button className='next-btn' onClick={nextPage}>
-        <HiChevronDoubleRight />
         next
+        <HiChevronDoubleRight />
       </button>
     </Wrapper>
   )
