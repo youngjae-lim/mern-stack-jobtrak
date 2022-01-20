@@ -57,6 +57,11 @@ const initialState = {
   numOfPages: 1,
   stats: {},
   monthlyApplications: [],
+  search: '',
+  searchStatus: 'all',
+  searchType: 'all',
+  sort: 'latest',
+  sortOptions: ['latest', 'oldest', 'a-z', 'z-a'],
 }
 
 const AppContext = React.createContext()
@@ -217,7 +222,13 @@ const AppProvider = ({ children }) => {
   }
 
   const getJobs = async () => {
-    let url = `/jobs`
+    // will add page later
+    const { search, searchStatus, searchType, sort } = state
+    let url = `/jobs?status=${searchStatus}&jobType=${searchType}&sort=${sort}`
+
+    if (search) {
+      url = url + `&search=${search}`
+    }
 
     dispatch({ type: GET_JOBS_BEGIN })
 
@@ -310,6 +321,10 @@ const AppProvider = ({ children }) => {
     clearAlert()
   }
 
+  const clearFilters = () => {
+    console.log('clear filters')
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -327,6 +342,7 @@ const AppProvider = ({ children }) => {
         editJob,
         deleteJob,
         showStats,
+        clearFilters,
       }}
     >
       {children}
