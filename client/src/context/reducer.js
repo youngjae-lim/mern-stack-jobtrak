@@ -123,6 +123,7 @@ const reducer = (state, action) => {
   if (action.type === HANDLE_CHANGE) {
     return {
       ...state,
+      page: 1, // display page 1 whenever a new search result is rendered
       [action.payload.name]: action.payload.value,
     }
   }
