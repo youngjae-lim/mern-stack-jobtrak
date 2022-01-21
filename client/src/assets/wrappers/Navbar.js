@@ -9,7 +9,6 @@ const Wrapper = styled.nav`
   .logo {
     display: flex;
     align-items: center;
-    width: 100px;
   }
   .nav-center {
     display: flex;

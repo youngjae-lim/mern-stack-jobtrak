@@ -7,7 +7,6 @@ const Landing = () => {
   return (
     <Wrapper>
       <nav>
-        {/* TODO: change log to Jobtrak */}
         <Logo />
       </nav>
       <div className='container page'>

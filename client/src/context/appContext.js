@@ -174,7 +174,7 @@ const AppProvider = ({ children }) => {
 
       addUserToLocalStroage({ user, token, location })
     } catch (error) {
-      // NOTE: We don't need to show auth error because a user is logged out automatically
+      // We don't need to show auth error because a user is logged out automatically
       if (error.response.status !== 401) {
         dispatch({
           type: UPDATE_USER_ERROR,
