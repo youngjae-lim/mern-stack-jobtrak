@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "install-client": "cd client && npm install",
     "build-client": "cd client && npm run build",
+    "heroku-postbuild": "npm run install-client && npm run build-client",
     "server": "nodemon server --ignore client",
     "client": "npm start --prefix client",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \" npm run client\""
@@ -42,5 +44,8 @@
     "react-icons": "^4.3.1",
     "validator": "^13.7.0",
     "xss-clean": "^0.1.1"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
